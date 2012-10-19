@@ -52,9 +52,14 @@ Node.o: $(SA)/Node.h $(SA)/Node.cpp
 
 
 clean:
-	rm -f $(AA)/ *.o 
-	rm -f $(VA)/ *.o
-	rm -f $(SA)/ *.o
+	rm -f $(AA)/*.o
+	rm -rf $(AA)/*~
+	rm -f $(VA)/*.o
+	rm -rf $(VA)/*~
+	rm -rf $(SA)/*.o
+	rm -rf $(SA)/*~
+	rm -rf $(SRC)/*.o
+	rm -rf $(SRC)/*~
 	rm -rf *~
 	rm -f $(BUILD)/main
 	rm -f $(BUILD)/aarray
