@@ -1,7 +1,10 @@
 instructions.txt
 *~
-*.o
-aarray
-varray
-sarray
-main
+src/AArray/aarray.o
+src/VArray/varray.o
+src/SArray/sarray.o
+src/SArray/node.o
+build/aarray
+build/varray
+build/sarray
+build/main
