@@ -1,2 +1,7 @@
 instructions.txt
 *~
+*.o
+aarray
+varray
+sarray
+main
