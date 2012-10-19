@@ -4,6 +4,10 @@ src/AArray/aarray.o
 src/VArray/varray.o
 src/SArray/sarray.o
 src/SArray/node.o
+src/AArray/*~
+src/VArray/*~
+src/SArray/*~
+src/*~
 build/aarray
 build/varray
 build/sarray
