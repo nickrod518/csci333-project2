@@ -3,22 +3,22 @@
 #include <string>
 #include <list>
 #include <vector>
-#include "AArray.h"
+#include "VArray.h"
 
 using std::cout;
 using std::endl;
 
 template <typename T>
-AArray<T>::AArray(int r, int c, T def) {
+VArray<T>::VArray(int r, int c, T def) {
   assert(r > 0 && c > 0);
 
   defVal = def;
   numRows = r;
   numCols = c;
-  theArray = new T*[r];
+  theArray = new vector<T*>*(r);
 
   for(int i = 0; i < r; ++i) {
-    theArray[i] = new T[c];
+    theArray(i) = new vector<T*>(c);
     for(int j = 0; j < c; ++j) {
       theArray[i][j] = defVal;
     }
@@ -26,36 +26,30 @@ AArray<T>::AArray(int r, int c, T def) {
 }
 
 template <typename T>
-AArray<T>::~AArray() {
-  for(int i = 0; i < getNumRows(); ++i) {
-    delete[] theArray[i];
-  }
-  delete[] theArray;
+VArray<T>::~VArray() {
+
 }
 
 template <typename T>
-void AArray<T>::insert(int r, int c, T v) {
+void VArray<T>::insert(int r, int c, T v) {
   assert(r >= 0 && r <= getNumRows());
   assert(c >= 0 && c <= getNumCols());
-  theArray[r][c] = v;
 }
 
 template <typename T>
-T AArray<T>::access(int r, int c) {
+T VArray<T>::access(int r, int c) {
   assert(r >= 0 && r <= getNumRows());
   assert(c >= 0 && c <= getNumCols());
-  return theArray[r][c];
 }
 
 template <typename T>
-void AArray<T>::remove(int r, int c) {
+void VArray<T>::remove(int r, int c) {
   assert(r >= 0 && r <= getNumRows());
   assert(c >= 0 && c <= getNumCols());
-  theArray[r][c] = defVal;
 }
 
 template <typename T>
-void AArray<T>::print() {
+void VArray<T>::print() {
   cout << "[" << endl;
   for(int r = 0; r < getNumRows(); ++r) {
     for(int c = 0; c < getNumCols(); ++c) {
@@ -70,15 +64,15 @@ void AArray<T>::print() {
 }
 
 template <typename T>
-int AArray<T>::getNumRows() {
+int VArray<T>::getNumRows() {
   return numRows;
 }
 
 template <typename T>
-int AArray<T>::getNumCols() {
+int VArray<T>::getNumCols() {
   return numCols;
 }
 
-template class AArray<int>;
-template class AArray<double>;
-template class AArray<std::string>;
+template class VArray<int>;
+template class VArray<double>;
+template class VArray<std::string>;
