@@ -30,21 +30,21 @@ $(GTEST_MAINA): $(GTEST)/src/*.cc $(GTEST)/src/*.h
 aarray: $(SRC)/array_tester.cpp $(AA)/AArray.o
 	$(CPP) $(CPPFLAGS) -o $(BUILD)/aarray $^
 
-AArray.o: clean $(AA)/AArray.h $(AA)/AArray.cpp
+AArray.o: $(AA)/AArray.h $(AA)/AArray.cpp
 	$(CPP) $(CPPFLAGS) -c $(AA)/AArray.cpp
 
 # vector array
 varray: $(SRC)/array_tester.cpp $(VA)/VArray.o
 	$(CPP) $(CPPFLAGS) -o $(BUILD)/varray $^
 
-VArray.o: clean $(VA)/VArray.h $(VA)/VArray.cpp
+VArray.o: $(VA)/VArray.h $(VA)/VArray.cpp
 	$(CPP) $(CPPFLAGS) -c $(VA)/VArray.cpp
 
 # sparse array
 sarray: $(SRC)/array_tester.cpp $(SA)/SArray.o $(SA)/Node.o
 	$(CPP) $(CPPFLAGS) -o $(BUILD)/sarray $^
 
-SArray.o: clean $(SA)/SArray.h $(SA)/SArray.cpp
+SArray.o: $(SA)/SArray.h $(SA)/SArray.cpp
 	$(CPP) $(CPPFLAGS) -c $(SA)/SArray.cpp
 
 Node.o: $(SA)/Node.h $(SA)/Node.cpp

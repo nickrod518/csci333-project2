@@ -10,44 +10,55 @@ using std::endl;
 
 template <typename T>
 AArray<T>::AArray(int r, int c, T def) {
-  defVal = def;
-  T** theArray = new T*[c];
+  assert(r > 0 && c > 0);
 
-  for(int i = 0; i < c; ++i) {
-    theArray[i] = new T[r];
-    for(int j = 0; j < r; ++j) {
-      (*theArray)[j] = def;
+  defVal = def;
+  numRows = r;
+  numCols = c;
+  theArray = new T*[r];
+
+  for(int i = 0; i < r; ++i) {
+    theArray[i] = new T[c];
+    for(int j = 0; j < c; ++j) {
+      theArray[i][j] = defVal;
     }
   }
 }
 
 template <typename T>
 void AArray<T>::insert(int r, int c, T v) {
-  **(theArray + c * numRows + r) = v;
+  assert(r >= 0 && r <= getNumRows());
+  assert(c >= 0 && c <= getNumCols());
+  theArray[r][c] = v;
 }
 
 template <typename T>
 T AArray<T>::access(int r, int c) {
-  return **(theArray + c * numRows + r);
+  assert(r >= 0 && r <= getNumRows());
+  assert(c >= 0 && c <= getNumCols());
+  return theArray[r][c];
 }
 
 template <typename T>
 void AArray<T>::remove(int r, int c) {
-  **(theArray + c * numRows + r) = defVal;
+  assert(r >= 0 && r <= getNumRows());
+  assert(c >= 0 && c <= getNumCols());
+  theArray[r][c] = defVal;
 }
 
 template <typename T>
 void AArray<T>::print() {
-  cout << "[ ";  
-  for(int r = numRows - 1; r >= 0; --r) {
-    for(int c = numCols - 1; c >= 0; --c) {
-      cout << **(theArray + c * getNumRows() + r);
-    }
-    if(r > 1) {
+  cout << "[" << endl;
+  for(int r = 0; r < getNumRows(); ++r) {
+    for(int c = 0; c < getNumCols(); ++c) {
+      cout << theArray[r][c];
+      if(r < getNumRows()-1 || c < getNumCols()-1) {
         cout << ", ";
+      }
     }
+    cout << endl;
   }
-  cout << " ]" << endl;
+  cout << "]" << endl;
 }
 
 template <typename T>
