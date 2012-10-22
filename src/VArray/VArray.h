@@ -10,8 +10,6 @@ class VArray {
   private:
     vector< vector<T> >* theArray;
     T defVal;
-    int numRows;
-    int numCols;
 
   public:
     VArray<T>(int r, int c, T def);

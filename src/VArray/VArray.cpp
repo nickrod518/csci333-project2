@@ -14,8 +14,6 @@ VArray<T>::VArray(int r, int c, T def) {
   assert(r > 0 && c > 0);
 
   defVal = def;
-  numRows = r;
-  numCols = c;
   theArray = new vector< vector<T> >(r, vector<T>(c, defVal));
 }
 
@@ -62,12 +60,12 @@ void VArray<T>::print() {
 
 template <typename T>
 int VArray<T>::getNumRows() {
-  return numRows;
+  return theArray->size();
 }
 
 template <typename T>
 int VArray<T>::getNumCols() {
-  return numCols;
+  return theArray->at(0).size();
 }
 
 template class VArray<int>;

@@ -16,6 +16,7 @@ TEST(VArray, Insert) {
 
   EXPECT_EQ(0, v->access(1, 4));
   EXPECT_EQ(200, v->access(0, 7));
+  delete v;
 }
 
 TEST(VArray, Access) {
@@ -28,6 +29,7 @@ TEST(VArray, Access) {
   EXPECT_EQ(1, v->access(4, 8));
   EXPECT_EQ(0, v->access(1, 4));
   EXPECT_EQ(200, v->access(0, 7));
+  delete v;
 }
 
 TEST(VArray, Remove) {
@@ -40,6 +42,7 @@ TEST(VArray, Remove) {
 
   EXPECT_EQ(1, v->access(1, 4));
   EXPECT_EQ(1, v->access(0, 7));
+  delete v;
 }
 
 TEST(VArray, Print) {
@@ -51,6 +54,7 @@ TEST(VArray, GetNumRows) {
   VArray<int>* v = new VArray<int>(rows, 200, 0);
 
   EXPECT_EQ(50, v->getNumRows());
+  delete v;
 }
 
 TEST(VArray, GetNumCols) {
@@ -58,4 +62,5 @@ TEST(VArray, GetNumCols) {
   VArray<int>* v = new VArray<int>(80, cols, 0);
 
   EXPECT_EQ(95, v->getNumCols());
+  delete v;
 }

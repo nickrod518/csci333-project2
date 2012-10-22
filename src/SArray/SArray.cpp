@@ -3,7 +3,7 @@
 #include <string>
 #include <list>
 #include <vector>
-#include "VArray.h"
+#include "SArray.h"
 
 using std::cout;
 using std::endl;

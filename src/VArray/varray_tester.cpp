@@ -17,6 +17,7 @@ int main () {
   cout << "accessed: " << v->access(1, 1) << endl;
 
   v->print();
+  delete v;
 
   return 0;
 }

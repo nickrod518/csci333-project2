@@ -1,9 +1,9 @@
 #include "Node.h"
-#include <assert.h>
 
 Node::Node(int v) {
   value = v;
-  next = 0;
+  down = 0;
+  right = 0;
 }
 
 Node::~Node() {
@@ -13,10 +13,18 @@ int Node::getValue() {
   return value;
 }
 
-Node* Node::getNext() {
-  return next;
+Node* Node::getNextDown() {
+  return down;
 }
 
-void Node::setNext(Node* &n) {
-  next = n;
+Node* Node::getNextRight() {
+  return right;
+}
+
+void Node::setNextDown(Node* &n) {
+  down = n;
+}
+
+void Node::setNextRight(Node* &n) {
+  right = n;
 }

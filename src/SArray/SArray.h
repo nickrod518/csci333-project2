@@ -1,9 +1,8 @@
-#ifndef __VARRAY_H__
-#define __VARRAY_H__
-
+#ifndef __SARRAY_H__
+#define __SARRAY_H__
 
 template <typename T>
-class VArray {
+class SArray {
   private:
     T** theArray;
     T defVal;
@@ -13,8 +12,8 @@ class VArray {
     Node* over;
 
   public:
-    VArray<T>(int r, int c, T def);
-    ~VArray<T>();
+    SArray<T>(int r, int c, T def);
+    ~SArray<T>();
     void insert(int r, int c, T v);
     T access(int r, int c);
     void remove(int r, int c);

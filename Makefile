@@ -47,7 +47,7 @@ VArray.o: $(VA)/VArray.h $(VA)/VArray.cpp
 	$(CPP) $(CPPFLAGS) -c $(VA)/VArray.cpp
 
 # sparse array
-aarray_test: $(TEST)/SArray.cpp $(SA)/SArray.o $(SA)/Node.o $(GTEST_MAINA)
+sarray_test: $(TEST)/SArray.cpp $(SA)/SArray.o $(SA)/Node.o $(GTEST_MAINA)
 	$(CPP) $(CPPFLAGS) $(GTEST_INCLUDES) -pthread -o $(TEST)/sarray_test $^
 
 sarray: $(SA)/sarray_tester.cpp $(SA)/SArray.o $(SA)/Node.o

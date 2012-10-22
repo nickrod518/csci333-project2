@@ -1,5 +1,5 @@
 #include <iostream>
-#include "AArray.h"
+#include "AArray/AArray.h"
 
 using std::cout;
 using std::endl;
@@ -17,7 +17,5 @@ int main () {
   cout << "accessed: " << a->access(1, 1) << endl;
 
   a->print();
-  delete a;
-
   return 0;
 }
