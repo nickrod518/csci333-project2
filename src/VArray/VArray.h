@@ -8,8 +8,7 @@ using std::vector;
 template <typename T>
 class VArray {
   private:
-    //vector<T*>* theArray;
-    vector< vector<T*>* > theArray;
+    vector< vector<T> >* theArray;
     T defVal;
     int numRows;
     int numCols;

@@ -27,24 +27,30 @@ $(GTEST_MAINA): $(GTEST)/src/*.cc $(GTEST)/src/*.h
 	cd $(GTEST)/make; make
 
 # array array
-aarray_test: $(TEST)/Array.cpp $(AA)/AArray.o $(GTEST_MAINA)
-	$(CPP) $(CPPFLAGS) $(GTEST_INCLUDES) -pthread -o $(TEST)/array_test $^
+aarray_test: $(TEST)/AArray.cpp $(AA)/AArray.o $(GTEST_MAINA)
+	$(CPP) $(CPPFLAGS) $(GTEST_INCLUDES) -pthread -o $(TEST)/aarray_test $^
 
-aarray: $(SRC)/array_tester.cpp $(AA)/AArray.o
+aarray: $(AA)/aarray_tester.cpp $(AA)/AArray.o
 	$(CPP) $(CPPFLAGS) -o $(BUILD)/aarray $^
 
 AArray.o: $(AA)/AArray.h $(AA)/AArray.cpp
 	$(CPP) $(CPPFLAGS) -c $(AA)/AArray.cpp
 
 # vector array
-varray: $(SRC)/array_tester.cpp $(VA)/VArray.o
+varray_test: $(TEST)/VArray.cpp $(VA)/VArray.o $(GTEST_MAINA)
+	$(CPP) $(CPPFLAGS) $(GTEST_INCLUDES) -pthread -o $(TEST)/varray_test $^
+
+varray: $(VA)/varray_tester.cpp $(VA)/VArray.o
 	$(CPP) $(CPPFLAGS) -o $(BUILD)/varray $^
 
 VArray.o: $(VA)/VArray.h $(VA)/VArray.cpp
 	$(CPP) $(CPPFLAGS) -c $(VA)/VArray.cpp
 
 # sparse array
-sarray: $(SRC)/array_tester.cpp $(SA)/SArray.o $(SA)/Node.o
+aarray_test: $(TEST)/SArray.cpp $(SA)/SArray.o $(SA)/Node.o $(GTEST_MAINA)
+	$(CPP) $(CPPFLAGS) $(GTEST_INCLUDES) -pthread -o $(TEST)/sarray_test $^
+
+sarray: $(SA)/sarray_tester.cpp $(SA)/SArray.o $(SA)/Node.o
 	$(CPP) $(CPPFLAGS) -o $(BUILD)/sarray $^
 
 SArray.o: $(SA)/SArray.h $(SA)/SArray.cpp
@@ -69,5 +75,8 @@ clean:
 	rm -f $(BUILD)/varray
 	rm -f $(BUILD)/sarray
 	rm -f $(TEST)/array_test
+	rm -f $(TEST)/aarray_test
+	rm -f $(TEST)/varray_test
+	rm -f $(TEST)/sarray_test
 	rm -f $(GTEST_MAINA)
 	cd $(GTEST)/make; make clean

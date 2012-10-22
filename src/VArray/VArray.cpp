@@ -16,13 +16,7 @@ VArray<T>::VArray(int r, int c, T def) {
   defVal = def;
   numRows = r;
   numCols = c;
-  //theArray = new vector<T*>(r);
-  theArray = new vector< vector<T*>* >;
-
-  for(int i = 0; i < r; ++i) {
-    //theArray[i] = new vector<T>(c, def);
-    //theArray->at(i) = new vector<T>(c, def);
-  }
+  theArray = new vector< vector<T> >(r, vector<T>(c, defVal));
 }
 
 template <typename T>
@@ -34,18 +28,21 @@ template <typename T>
 void VArray<T>::insert(int r, int c, T v) {
   assert(r >= 0 && r <= getNumRows());
   assert(c >= 0 && c <= getNumCols());
+  theArray->at(r).at(c) = v;
 }
 
 template <typename T>
 T VArray<T>::access(int r, int c) {
   assert(r >= 0 && r <= getNumRows());
   assert(c >= 0 && c <= getNumCols());
+  return theArray->at(r).at(c);
 }
 
 template <typename T>
 void VArray<T>::remove(int r, int c) {
   assert(r >= 0 && r <= getNumRows());
   assert(c >= 0 && c <= getNumCols());
+  theArray->at(r).at(c) = defVal;
 }
 
 template <typename T>
@@ -53,7 +50,7 @@ void VArray<T>::print() {
   cout << "[" << endl;
   for(int r = 0; r < getNumRows(); ++r) {
     for(int c = 0; c < getNumCols(); ++c) {
-      //cout << theArray[r][c];
+      cout << "\t" << theArray->at(r).at(c);
       if(r < getNumRows()-1 || c < getNumCols()-1) {
         cout << ", ";
       }

@@ -59,7 +59,7 @@ void AArray<T>::print() {
   cout << "[" << endl;
   for(int r = 0; r < getNumRows(); ++r) {
     for(int c = 0; c < getNumCols(); ++c) {
-      cout << theArray[r][c];
+      cout << "\t" << theArray[r][c];
       if(r < getNumRows()-1 || c < getNumCols()-1) {
         cout << ", ";
       }
