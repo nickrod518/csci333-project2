@@ -7,6 +7,7 @@
 
 using std::cout;
 using std::endl;
+using std::vector;
 
 template <typename T>
 VArray<T>::VArray(int r, int c, T def) {
@@ -15,13 +16,12 @@ VArray<T>::VArray(int r, int c, T def) {
   defVal = def;
   numRows = r;
   numCols = c;
-  theArray = new vector<T*>*(r);
+  //theArray = new vector<T*>(r);
+  theArray = new vector< vector<T*>* >;
 
   for(int i = 0; i < r; ++i) {
-    theArray(i) = new vector<T*>(c);
-    for(int j = 0; j < c; ++j) {
-      theArray[i][j] = defVal;
-    }
+    //theArray[i] = new vector<T>(c, def);
+    //theArray->at(i) = new vector<T>(c, def);
   }
 }
 
@@ -53,7 +53,7 @@ void VArray<T>::print() {
   cout << "[" << endl;
   for(int r = 0; r < getNumRows(); ++r) {
     for(int c = 0; c < getNumCols(); ++c) {
-      cout << theArray[r][c];
+      //cout << theArray[r][c];
       if(r < getNumRows()-1 || c < getNumCols()-1) {
         cout << ", ";
       }

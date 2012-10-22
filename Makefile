@@ -27,6 +27,9 @@ $(GTEST_MAINA): $(GTEST)/src/*.cc $(GTEST)/src/*.h
 	cd $(GTEST)/make; make
 
 # array array
+aarray_test: $(TEST)/Array.cpp $(AA)/AArray.o $(GTEST_MAINA)
+	$(CPP) $(CPPFLAGS) $(GTEST_INCLUDES) -pthread -o $(TEST)/array_test $^
+
 aarray: $(SRC)/array_tester.cpp $(AA)/AArray.o
 	$(CPP) $(CPPFLAGS) -o $(BUILD)/aarray $^
 

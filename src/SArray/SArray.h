@@ -1,18 +1,16 @@
 #ifndef __VARRAY_H__
 #define __VARRAY_H__
 
-#include <vector>
-
-using std::vector;
 
 template <typename T>
 class VArray {
   private:
-    //vector<T*>* theArray;
-    vector< vector<T*>* > theArray;
+    T** theArray;
     T defVal;
     int numRows;
     int numCols;
+    Node* down;
+    Node* over;
 
   public:
     VArray<T>(int r, int c, T def);
