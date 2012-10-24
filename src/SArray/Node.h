@@ -1,16 +1,17 @@
 #ifndef __NODE_H__
 #define __NODE_H__
 
+template <typename T>
 class Node {
   private:
-    int value;
+    T value;
     Node* down;
     Node* right;
 
   public:
-    Node(int v);
+    Node(T v);
     ~Node();
-    int getValue();
+    T getValue();
     Node* getNextDown();
     Node* getNextRight();
     void setNextDown(Node* &n);

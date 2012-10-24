@@ -1,15 +1,16 @@
 #ifndef __SARRAY_H__
 #define __SARRAY_H__
 
+#include "Node.h"
+
 template <typename T>
 class SArray {
   private:
-    T** theArray;
     T defVal;
+    Node<T>** row;
+    Node<T>** col;
     int numRows;
     int numCols;
-    Node* down;
-    Node* over;
 
   public:
     SArray<T>(int r, int c, T def);

@@ -4,56 +4,60 @@
 #include <list>
 #include <vector>
 #include "SArray.h"
+#include "Node.h"
 
 using std::cout;
 using std::endl;
-using std::vector;
 
 template <typename T>
-VArray<T>::VArray(int r, int c, T def) {
+SArray<T>::SArray(int r, int c, T def) {
   assert(r > 0 && c > 0);
 
   defVal = def;
   numRows = r;
   numCols = c;
-  //theArray = new vector<T*>(r);
-  theArray = new vector< vector<T*>* >;
+
+  row = new Node<T>*[r];
+  col = new Node<T>*[c];
 
   for(int i = 0; i < r; ++i) {
-    //theArray[i] = new vector<T>(c, def);
-    theArray->at(i) = new vector<T>(c, def);
+    row[i] = new Node<T>(def);
+  }
+
+  for(int i = 0; i < c; ++i) {
+    col[i] = new Node<T>(def);
   }
 }
 
 template <typename T>
-VArray<T>::~VArray() {
+SArray<T>::~SArray() {
 
 }
 
 template <typename T>
-void VArray<T>::insert(int r, int c, T v) {
+void SArray<T>::insert(int r, int c, T v) {
   assert(r >= 0 && r <= getNumRows());
   assert(c >= 0 && c <= getNumCols());
 }
 
 template <typename T>
-T VArray<T>::access(int r, int c) {
+T SArray<T>::access(int r, int c) {
   assert(r >= 0 && r <= getNumRows());
   assert(c >= 0 && c <= getNumCols());
 }
 
 template <typename T>
-void VArray<T>::remove(int r, int c) {
+void SArray<T>::remove(int r, int c) {
   assert(r >= 0 && r <= getNumRows());
   assert(c >= 0 && c <= getNumCols());
 }
 
 template <typename T>
-void VArray<T>::print() {
+void SArray<T>::print() {
   cout << "[" << endl;
   for(int r = 0; r < getNumRows(); ++r) {
     for(int c = 0; c < getNumCols(); ++c) {
-      cout << theArray[r][c];
+      //cout << theArray[r][c];
       if(r < getNumRows()-1 || c < getNumCols()-1) {
         cout << ", ";
       }
@@ -64,15 +68,15 @@ void VArray<T>::print() {
 }
 
 template <typename T>
-int VArray<T>::getNumRows() {
+int SArray<T>::getNumRows() {
   return numRows;
 }
 
 template <typename T>
-int VArray<T>::getNumCols() {
+int SArray<T>::getNumCols() {
   return numCols;
 }
 
-template class VArray<int>;
-template class VArray<double>;
-template class VArray<std::string>;
+template class SArray<int>;
+template class SArray<double>;
+template class SArray<std::string>;

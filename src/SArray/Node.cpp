@@ -1,30 +1,43 @@
+#include <string>
 #include "Node.h"
 
-Node::Node(int v) {
+template <typename T>
+Node<T>::Node(T v) {
   value = v;
   down = 0;
   right = 0;
 }
 
-Node::~Node() {
+template <typename T>
+Node<T>::~Node() {
+
 }
 
-int Node::getValue() {
+template <typename T>
+T Node<T>::getValue() {
   return value;
 }
 
-Node* Node::getNextDown() {
+template <typename T>
+Node* Node<T>::getNextDown() {
   return down;
 }
 
-Node* Node::getNextRight() {
+template <typename T>
+Node* Node<T>::getNextRight() {
   return right;
 }
 
-void Node::setNextDown(Node* &n) {
+template <typename T>
+void Node<T>::setNextDown(Node* &n) {
   down = n;
 }
 
-void Node::setNextRight(Node* &n) {
+template <typename T>
+void Node<T>::setNextRight(Node* &n) {
   right = n;
 }
+
+template class SArray<int>;
+template class SArray<double>;
+template class SArray<std::string>;
