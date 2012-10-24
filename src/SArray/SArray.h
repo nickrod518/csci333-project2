@@ -7,8 +7,8 @@ template <typename T>
 class SArray {
   private:
     T defVal;
-    Node<T>** row;
-    Node<T>** col;
+    Node<T>** rows;
+    Node<T>** cols;
     int numRows;
     int numCols;
 

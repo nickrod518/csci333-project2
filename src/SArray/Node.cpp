@@ -19,23 +19,23 @@ T Node<T>::getValue() {
 }
 
 template <typename T>
-Node* Node<T>::getNextDown() {
+Node*& Node<T>::getNextDown() {
   return down;
 }
 
 template <typename T>
-Node* Node<T>::getNextRight() {
+Node*& Node<T>::getNextRight() {
   return right;
 }
 
 template <typename T>
 void Node<T>::setNextDown(Node* &n) {
-  down = n;
+  down = &n;
 }
 
 template <typename T>
 void Node<T>::setNextRight(Node* &n) {
-  right = n;
+  right = &n;
 }
 
 template class SArray<int>;

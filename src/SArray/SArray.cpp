@@ -1,10 +1,7 @@
 #include <iostream>
 #include <assert.h>
 #include <string>
-#include <list>
-#include <vector>
 #include "SArray.h"
-#include "Node.h"
 
 using std::cout;
 using std::endl;
@@ -17,15 +14,15 @@ SArray<T>::SArray(int r, int c, T def) {
   numRows = r;
   numCols = c;
 
-  row = new Node<T>*[r];
-  col = new Node<T>*[c];
+  rows = new Node<T>*[r];
+  cols = new Node<T>*[c];
 
   for(int i = 0; i < r; ++i) {
-    row[i] = new Node<T>(def);
+    rows[i] = 0;
   }
 
   for(int i = 0; i < c; ++i) {
-    col[i] = new Node<T>(def);
+    cols[i] = 0;
   }
 }
 
@@ -38,12 +35,42 @@ template <typename T>
 void SArray<T>::insert(int r, int c, T v) {
   assert(r >= 0 && r <= getNumRows());
   assert(c >= 0 && c <= getNumCols());
+
+  Node<T>** currRow = &(rows[r]);
+  Node<T>** currCol = &(cols[c]);
+  while(*currRow != 0) {
+    while(*currCol != 0) {
+      if(*currRow == *currCol) {
+        return (*currRow)->getValue();
+      }
+      *currRow = (*currRow)->getNextRight();
+    }
+    *currCol = (*currCol)->getNextDown();
+  }
+  return defVal;
 }
 
 template <typename T>
 T SArray<T>::access(int r, int c) {
   assert(r >= 0 && r <= getNumRows());
   assert(c >= 0 && c <= getNumCols());
+
+  if(rows[r] == 0 || cols[c] == 0) {
+    return defVal;
+  } else {
+    Node<T>** currRow = &(rows[r]);
+    Node<T>** currCol = &(cols[c]);
+    while(*currRow != 0) {
+      while(*currCol != 0) {
+        if(*currRow == *currCol) {
+          return (*currRow)->getValue();
+        }
+        *currRow = (*currRow)->getNextRight();
+      }
+      *currCol = (*currCol)->getNextDown();
+    }
+    return defVal;
+  }
 }
 
 template <typename T>
