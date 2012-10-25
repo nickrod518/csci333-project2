@@ -2,8 +2,10 @@
 #include "Node.h"
 
 template <typename T>
-Node<T>::Node(T v) {
+Node<T>::Node(T v, int r, int c) {
   value = v;
+  row = r;
+  col = c;
   down = 0;
   right = 0;
 }
@@ -16,6 +18,11 @@ Node<T>::~Node() {
 template <typename T>
 T Node<T>::getValue() {
   return value;
+}
+
+template <typename T>
+void Node<T>::setValue(T v) {
+  value = v
 }
 
 template <typename T>

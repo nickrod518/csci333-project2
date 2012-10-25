@@ -38,16 +38,17 @@ void SArray<T>::insert(int r, int c, T v) {
 
   Node<T>** currRow = &(rows[r]);
   Node<T>** currCol = &(cols[c]);
+  Node<T>* newNode = new Node<T>(v);
   while(*currRow != 0) {
     while(*currCol != 0) {
       if(*currRow == *currCol) {
-        return (*currRow)->getValue();
+        newNode->setNextDown(currCol);
+        currCol->setNextDown(currCol->getNextDown());
       }
       *currRow = (*currRow)->getNextRight();
     }
     *currCol = (*currCol)->getNextDown();
   }
-  return defVal;
 }
 
 template <typename T>
