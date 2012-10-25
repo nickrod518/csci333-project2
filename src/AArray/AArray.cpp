@@ -1,8 +1,6 @@
 #include <iostream>
 #include <assert.h>
 #include <string>
-#include <list>
-#include <vector>
 #include "AArray.h"
 
 using std::cout;

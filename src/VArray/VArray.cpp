@@ -1,7 +1,6 @@
 #include <iostream>
 #include <assert.h>
 #include <string>
-#include <list>
 #include <vector>
 #include "VArray.h"
 
