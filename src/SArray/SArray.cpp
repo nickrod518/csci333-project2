@@ -70,10 +70,10 @@ T SArray<T>::access(int r, int c) {
   } else {
     Node<T>** curr = &(rows[r]);
     while(*curr != 0) {
-      if((*curr)->getRow() == r && (*curr)->getCol() == c) {
+      if((*curr)->getCol() == c) {
         return (*curr)->getValue();
       }
-      *curr = (*curr)->getRight();
+      curr = &((*curr)->getRight());
     }
     return defVal;
   }
