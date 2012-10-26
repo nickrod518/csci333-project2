@@ -1,42 +1,42 @@
 #include "gtest/gtest.h"
-#include "../src/AArray/AArray.h"
+#include "../src/SArray/SArray.h"
 #include <string>
 
 using std::string;
 
-TEST(AArray, Initialize) {
-  AArray<int>* ai = new AArray<int>(4, 30, 2);
+TEST(SArray, Initialize) {
+  SArray<int>* ai = new SArray<int>(4, 30, 2);
   EXPECT_EQ(4, ai->getNumRows());
   EXPECT_EQ(30, ai->getNumCols());
   delete ai;
 
-  AArray<double>* ad = new AArray<double>(5, 10, 1.4);
+  SArray<double>* ad = new SArray<double>(5, 10, 1.4);
   EXPECT_EQ(5, ad->getNumRows());
   EXPECT_EQ(10, ad->getNumCols());
   delete ad;
 
-  AArray<string>* as = new AArray<string>(5, 10, "hello");
+  SArray<string>* as = new SArray<string>(5, 10, "hello");
   EXPECT_EQ(5, as->getNumRows());
   EXPECT_EQ(10, as->getNumCols());
   delete as;
 }
 
-TEST(AArray, Insert) {
-  AArray<int>* ai = new AArray<int>(5, 10, 1);
+TEST(SArray, Insert) {
+  SArray<int>* ai = new SArray<int>(5, 10, 1);
   ai->insert(1, 4, 0);
   ai->insert(0, 7, 200);
   EXPECT_EQ(0, ai->access(1, 4));
   EXPECT_EQ(200, ai->access(0, 7));
   delete ai;
 
-  AArray<double>* ad = new AArray<double>(5, 10, 1);
+  SArray<double>* ad = new SArray<double>(5, 10, 1);
   ad->insert(1, 4, 12.3);
   ad->insert(0, 7, 400.003);
   EXPECT_EQ(12.3, ad->access(1, 4));
   EXPECT_EQ(400.003, ad->access(0, 7));
   delete ad;
 
-  AArray<string>* as = new AArray<string>(5, 10, "hello");
+  SArray<string>* as = new SArray<string>(5, 10, "hello");
   as->insert(1, 4, "ohai");
   as->insert(0, 7, "hi");
   EXPECT_EQ("ohai", as->access(1, 4));
@@ -44,8 +44,8 @@ TEST(AArray, Insert) {
   delete as;
 }
 
-TEST(AArray, Access) {
-  AArray<int>* ai = new AArray<int>(5, 10, 1);
+TEST(SArray, Access) {
+  SArray<int>* ai = new SArray<int>(5, 10, 1);
   ai->insert(1, 4, 0);
   ai->insert(0, 7, 200);
   EXPECT_EQ(1, ai->access(0, 0));
@@ -55,7 +55,7 @@ TEST(AArray, Access) {
   EXPECT_EQ(200, ai->access(0, 7));
   delete ai;
 
-  AArray<double>* ad = new AArray<double>(5, 10, 1.8);
+  SArray<double>* ad = new SArray<double>(5, 10, 1.8);
   ad->insert(1, 4, 55.39);
   ad->insert(0, 7, .01);
   EXPECT_EQ(1.8, ad->access(0, 0));
@@ -65,7 +65,7 @@ TEST(AArray, Access) {
   EXPECT_EQ(.01, ad->access(0, 7));
   delete ad;
 
-  AArray<string>* as = new AArray<string>(5, 10, "ohai");
+  SArray<string>* as = new SArray<string>(5, 10, "ohai");
   as->insert(1, 4, "um");
   as->insert(0, 7, "world");
   EXPECT_EQ("ohai", as->access(0, 0));
@@ -76,8 +76,8 @@ TEST(AArray, Access) {
   delete as;
 }
 
-TEST(AArray, Remove) {
-  AArray<int>* ai = new AArray<int>(5, 10, 1);
+TEST(SArray, Remove) {
+  SArray<int>* ai = new SArray<int>(5, 10, 1);
   ai->insert(1, 4, 0);
   ai->insert(0, 7, 200);
   ai->remove(1, 4);
@@ -86,7 +86,7 @@ TEST(AArray, Remove) {
   EXPECT_EQ(1, ai->access(0, 7));
   delete ai;
 
-  AArray<double>* ad = new AArray<double>(5, 10, .1);
+  SArray<double>* ad = new SArray<double>(5, 10, .1);
   ad->insert(1, 4, .4);
   ad->insert(0, 7, 20.2);
   ad->remove(1, 4);
@@ -95,7 +95,7 @@ TEST(AArray, Remove) {
   EXPECT_EQ(.1, ad->access(0, 7));
   delete ad;
 
-  AArray<string>* as = new AArray<string>(5, 10, "abc");
+  SArray<string>* as = new SArray<string>(5, 10, "abc");
   as->insert(1, 4, "jkl;");
   as->insert(0, 7, "project");
   as->remove(1, 4);
@@ -105,40 +105,40 @@ TEST(AArray, Remove) {
   delete as;
 }
 
-TEST(AArray, Print) {
+TEST(SArray, Print) {
 
 }
 
-TEST(AArray, GetNumRows) {
+TEST(SArray, GetNumRows) {
   int rows = 50;
-  AArray<int>* ai = new AArray<int>(rows, 200, 0);
+  SArray<int>* ai = new SArray<int>(rows, 200, 0);
   EXPECT_EQ(50, ai->getNumRows());
   delete ai;
 
   rows = 20;
-  AArray<double>* ad = new AArray<double>(rows, 200, 1.1);
+  SArray<double>* ad = new SArray<double>(rows, 200, 1.1);
   EXPECT_EQ(20, ad->getNumRows());
   delete ad;
 
   rows = 5;
-  AArray<string>* as = new AArray<string>(rows, 200, "world");
+  SArray<string>* as = new SArray<string>(rows, 200, "world");
   EXPECT_EQ(5, as->getNumRows());
   delete as;
 }
 
-TEST(AArray, GetNumCols) {
+TEST(SArray, GetNumCols) {
   int cols = 95;
-  AArray<int>* ai = new AArray<int>(80, cols, 0);
+  SArray<int>* ai = new SArray<int>(80, cols, 0);
   EXPECT_EQ(95, ai->getNumCols());
   delete ai;
 
   cols = 40;
-  AArray<double>* ad = new AArray<double>(80, cols, 10.10);
+  SArray<double>* ad = new SArray<double>(80, cols, 10.10);
   EXPECT_EQ(40, ad->getNumCols());
   delete ad;
 
   cols = 100;
-  AArray<string>* as = new AArray<string>(80, cols, "hello");
+  SArray<string>* as = new SArray<string>(80, cols, "hello");
   EXPECT_EQ(100, ad->getNumCols());
   delete as;
 }
