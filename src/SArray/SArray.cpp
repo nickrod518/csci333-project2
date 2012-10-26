@@ -40,30 +40,20 @@ SArray<T>::~SArray() {
 
 template <typename T>
 void SArray<T>::insert(int r, int c, T v) {
-  assert(r >= 0 && r <= getNumRows());
-  assert(c >= 0 && c <= getNumCols());
+  assert(r >= 0 && r < getNumRows());
+  assert(c >= 0 && c < getNumCols());
 
   Node<T>** currRow = &(rows[r]);
-  while(*currRow != 0 && (*currRow)->getCol() < c) {
-    Node<T>* temp = (*currRow)->getRight();
-    currRow = &temp;
-    //*currRow = (*currRow)->getRight();
-  }
-
-  Node<T>** currCol = &(cols[c]);
-  while(currRow != currCol) {
-    Node<T>* temp = (*currRow)->getDown();
-    currCol = &temp;
-    //*currCol = (*currCol)->getDown();
-  }
-
   Node<T>* nextRight = 0;
-  if(*currRow != 0) {
+  while(*currRow != 0 && (*currRow)->getCol() < c) {
+    *currRow = (*currRow)->getRight();
     nextRight = (*currRow)->getRight();
   }
 
+  Node<T>** currCol = &(cols[c]);
   Node<T>* nextDown = 0;
-  if(*currCol != 0) {
+  while(currRow != 0 && (*currCol)->getRow() < r) {
+    *currCol = (*currCol)->getDown();
     nextDown = (*currCol)->getDown();
   }
 
@@ -76,8 +66,8 @@ void SArray<T>::insert(int r, int c, T v) {
 
 template <typename T>
 T SArray<T>::access(int r, int c) {
-  assert(r >= 0 && r <= getNumRows());
-  assert(c >= 0 && c <= getNumCols());
+  assert(r >= 0 && r < getNumRows());
+  assert(c >= 0 && c < getNumCols());
 
   if(rows[r] == 0 || cols[c] == 0) {
     return defVal;
@@ -95,26 +85,20 @@ T SArray<T>::access(int r, int c) {
 
 template <typename T>
 void SArray<T>::remove(int r, int c) {
-  assert(r >= 0 && r <= getNumRows());
-  assert(c >= 0 && c <= getNumCols());
+  assert(r >= 0 && r < getNumRows());
+  assert(c >= 0 && c < getNumCols());
 
   Node<T>** currRow = &(rows[r]);
+  Node<T>* nextRight = 0;
   while(*currRow != 0 && (*currRow)->getCol() < c) {
     *currRow = (*currRow)->getRight();
-  }
-
-  Node<T>** currCol = &(cols[c]);
-  while(currRow != currCol) {
-    *currCol = (*currCol)->getDown();
-  }
-
-  Node<T>* nextRight = 0;
-  if(*currRow != 0) {
     nextRight = (*currRow)->getRight();
   }
 
+  Node<T>** currCol = &(cols[c]);
   Node<T>* nextDown = 0;
-  if(*currCol != 0) {
+  while(currRow != 0 && (*currCol)->getRow() < r) {
+    *currCol = (*currCol)->getDown();
     nextDown = (*currCol)->getDown();
   }
 

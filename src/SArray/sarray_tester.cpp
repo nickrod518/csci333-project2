@@ -20,5 +20,6 @@ int main () {
   cout << "accessed: " << a->access(1, 1) << endl;
 
   a->print();
+  delete a;
   return 0;
 }
