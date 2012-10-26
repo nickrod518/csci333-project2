@@ -1,16 +1,19 @@
 #include <iostream>
-#include "AArray/AArray.h"
+#include "SArray.h"
 
 using std::cout;
 using std::endl;
 
 int main () {
-  AArray<int>* a = new AArray<int>(5, 7, 0);
+  SArray<int>* a = new SArray<int>(5, 7, 0);
   cout << "initialized" << endl;
 
   a->insert(3, 5, 8);
+  cout << "first insert" << endl;
   a->insert(3, 6, 20);
+  cout << "second insert" << endl;
   a->insert(1, 2, 40);
+  cout << "third insert" << endl;
   cout << "inserted" << endl;
 
   cout << "accessed: " << a->access(3, 5) << endl;

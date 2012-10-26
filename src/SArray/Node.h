@@ -7,18 +7,20 @@ class Node {
     T value;
     int row;
     int col;
-    Node* down;
-    Node* right;
+    Node<T>* down;
+    Node<T>* right;
 
   public:
-    Node(T v, int r, int c);
-    ~Node();
+    Node<T>(int r, int c, T v);
+    ~Node<T>();
     T getValue();
     void setValue(T v);
-    Node* getNextDown();
-    Node* getNextRight();
-    void setNextDown(Node* &n);
-    void setNextRight(Node* &n);
+    int getRow();
+    int getCol();
+    Node<T>* getDown();
+    Node<T>* getRight();
+    void setDown(Node<T>* n);
+    void setRight(Node<T>* n);
 };
 
 #endif

@@ -2,7 +2,7 @@
 #include "Node.h"
 
 template <typename T>
-Node<T>::Node(T v, int r, int c) {
+Node<T>::Node(int r, int c, T v) {
   value = v;
   row = r;
   col = c;
@@ -22,29 +22,39 @@ T Node<T>::getValue() {
 
 template <typename T>
 void Node<T>::setValue(T v) {
-  value = v
+  value = v;
 }
 
 template <typename T>
-Node*& Node<T>::getNextDown() {
+int Node<T>::getRow() {
+  return row;
+}
+
+template <typename T>
+int Node<T>::getCol() {
+  return col;
+}
+
+template <typename T>
+Node<T>* Node<T>::getDown() {
   return down;
 }
 
 template <typename T>
-Node*& Node<T>::getNextRight() {
+Node<T>* Node<T>::getRight() {
   return right;
 }
 
 template <typename T>
-void Node<T>::setNextDown(Node* &n) {
-  down = &n;
+void Node<T>::setDown(Node<T>* n) {
+  down = n;
 }
 
 template <typename T>
-void Node<T>::setNextRight(Node* &n) {
-  right = &n;
+void Node<T>::setRight(Node<T>* n) {
+  right = n;
 }
 
-template class SArray<int>;
-template class SArray<double>;
-template class SArray<std::string>;
+template class Node<int>;
+template class Node<double>;
+template class Node<std::string>;
