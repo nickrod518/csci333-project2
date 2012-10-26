@@ -84,24 +84,21 @@ void SArray<T>::remove(int r, int c) {
   assert(r >= 0 && r < getNumRows());
   assert(c >= 0 && c < getNumCols());
 
-  Node<T>** currRow = &(rows[r]);
-  Node<T>* nextRight = 0;
-  while(*currRow != 0 && (*currRow)->getCol() < c) {
-    *currRow = (*currRow)->getRight();
-    nextRight = (*currRow)->getRight();
+  Node<T>** currRow = &(cols[c]);
+  while(*currRow != 0 && (*currRow)->getRow() < r) {
+    currRow = &((*currRow)->getDown());
   }
 
-  Node<T>** currCol = &(cols[c]);
-  Node<T>* nextDown = 0;
-  while(currRow != 0 && (*currCol)->getRow() < r) {
-    *currCol = (*currCol)->getDown();
-    nextDown = (*currCol)->getDown();
+  Node<T>** currCol = &(rows[r]);
+  while(*currCol != 0 && (*currCol)->getCol() < c) {
+    currCol = &((*currCol)->getRight());
   }
 
   Node<T>* oldNode = *currRow;
-  *currRow = nextRight;
-  *currCol = nextDown;
+  (*currRow)->setDown(**currRow);
+  (*currCol)->setRight(**currCol);
   delete oldNode;
+
 }
 
 template <typename T>
