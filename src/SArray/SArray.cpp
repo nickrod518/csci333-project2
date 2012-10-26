@@ -111,7 +111,7 @@ void SArray<T>::print() {
     for(int c = 0; c < getNumCols(); ++c) {
       cout << access(r, c);
       if(r < getNumRows()-1 || c < getNumCols()-1) {
-        cout << ", ";
+        cout << ", \t";
       }
     }
     cout << endl;

@@ -47,9 +47,9 @@ void VArray<T>::print() {
   cout << "[" << endl;
   for(int r = 0; r < getNumRows(); ++r) {
     for(int c = 0; c < getNumCols(); ++c) {
-      cout << "\t" << theArray->at(r).at(c);
+      cout << theArray->at(r).at(c);
       if(r < getNumRows()-1 || c < getNumCols()-1) {
-        cout << ", ";
+        cout << ", \t";
       }
     }
     cout << endl;
