@@ -139,6 +139,6 @@ TEST(SArray, GetNumCols) {
 
   cols = 100;
   SArray<string>* as = new SArray<string>(80, cols, "hello");
-  EXPECT_EQ(100, ad->getNumCols());
+  EXPECT_EQ(100, as->getNumCols());
   delete as;
 }

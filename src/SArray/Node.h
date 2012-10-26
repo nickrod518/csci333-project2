@@ -17,10 +17,10 @@ class Node {
     void setValue(T v);
     int getRow();
     int getCol();
-    Node<T>* getDown();
-    Node<T>* getRight();
-    void setDown(Node<T>* n);
-    void setRight(Node<T>* n);
+    Node<T>*& getDown();
+    Node<T>*& getRight();
+    void setDown(Node<T>& n);
+    void setRight(Node<T>& n);
 };
 
 #endif

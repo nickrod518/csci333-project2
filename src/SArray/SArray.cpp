@@ -32,7 +32,7 @@ SArray<T>::~SArray() {
     Node<T>** curr = &(rows[i]);
     while(*curr != 0) {
       Node<T>* oldNode = *curr;
-      *curr = (*curr)->getRight();
+      curr = &((*curr)->getRight());
       delete oldNode;
     }
   }
@@ -43,25 +43,21 @@ void SArray<T>::insert(int r, int c, T v) {
   assert(r >= 0 && r < getNumRows());
   assert(c >= 0 && c < getNumCols());
 
-  Node<T>** currRow = &(rows[r]);
-  Node<T>* nextRight = 0;
-  while(*currRow != 0 && (*currRow)->getCol() < c) {
-    *currRow = (*currRow)->getRight();
-    nextRight = (*currRow)->getRight();
+  Node<T>** currRow = &(cols[c]);
+  while(*currRow != 0 && (*currRow)->getRow() < r) {
+    currRow = &((*currRow)->getDown());
   }
 
-  Node<T>** currCol = &(cols[c]);
-  Node<T>* nextDown = 0;
-  while(currRow != 0 && (*currCol)->getRow() < r) {
-    *currCol = (*currCol)->getDown();
-    nextDown = (*currCol)->getDown();
+  Node<T>** currCol = &(rows[r]);
+  while(*currCol != 0 && (*currCol)->getCol() < c) {
+    currCol = &((*currCol)->getRight());
   }
 
   Node<T>* newNode = new Node<T>(r, c, v);
-  newNode->setRight(nextRight);
-  newNode->setDown(nextDown);
-  (*currRow)->setRight(newNode);
-  (*currCol)->setDown(newNode);
+  newNode->setDown(**currRow);
+  newNode->setRight(**currCol);
+  *currRow = newNode;
+  *currCol = newNode;
 }
 
 template <typename T>
@@ -103,8 +99,8 @@ void SArray<T>::remove(int r, int c) {
   }
 
   Node<T>* oldNode = *currRow;
-  (*currRow)->setRight(nextRight);
-  (*currCol)->setDown(nextDown);
+  *currRow = nextRight;
+  *currCol = nextDown;
   delete oldNode;
 }
 

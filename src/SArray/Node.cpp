@@ -36,23 +36,23 @@ int Node<T>::getCol() {
 }
 
 template <typename T>
-Node<T>* Node<T>::getDown() {
+Node<T>*& Node<T>::getDown() {
   return down;
 }
 
 template <typename T>
-Node<T>* Node<T>::getRight() {
+Node<T>*& Node<T>::getRight() {
   return right;
 }
 
 template <typename T>
-void Node<T>::setDown(Node<T>* n) {
-  down = n;
+void Node<T>::setDown(Node<T>& n) {
+  down = &n;
 }
 
 template <typename T>
-void Node<T>::setRight(Node<T>* n) {
-  right = n;
+void Node<T>::setRight(Node<T>& n) {
+  right = &n;
 }
 
 template class Node<int>;
