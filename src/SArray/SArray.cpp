@@ -84,6 +84,8 @@ void SArray<T>::remove(int r, int c) {
   assert(r >= 0 && r < getNumRows());
   assert(c >= 0 && c < getNumCols());
 
+  Node<T>* oldNode = 0;
+
   Node<T>** currRow = &(cols[c]);
   while(*currRow != 0 && (*currRow)->getRow() < r) {
     currRow = &((*currRow)->getDown());
@@ -92,6 +94,7 @@ void SArray<T>::remove(int r, int c) {
   if(*currRow != 0) {
     nextRow = &((*currRow)->getDown());
     (*currRow)->setDown(**nextRow);
+    oldNode = *currRow;
   }
 
   Node<T>** currCol = &(rows[r]);
@@ -102,14 +105,11 @@ void SArray<T>::remove(int r, int c) {
   if(*currRow != 0) {
     nextCol = &((*currCol)->getRight());
     (*currCol)->setRight(**nextCol);
+    oldNode = *currCol;
   }
 
-  Node<T>* oldRow = *currRow;
-  Node<T>* oldCol = *currCol;
-  if(oldRow != 0) {
-    delete oldRow;
-  } else if(oldCol != 0) {
-    delete oldCol;
+  if(oldNode != 0) {
+    delete oldNode;
   }
 }
 
