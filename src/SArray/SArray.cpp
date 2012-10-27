@@ -108,8 +108,7 @@ void SArray<T>::remove(int r, int c) {
   Node<T>* oldCol = *currCol;
   if(oldRow != 0) {
     delete oldRow;
-  }
-  if(oldCol != 0) {
+  } else if(oldCol != 0) {
     delete oldCol;
   }
 }
