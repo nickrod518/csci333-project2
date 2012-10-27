@@ -102,7 +102,7 @@ void SArray<T>::remove(int r, int c) {
     currCol = &((*currCol)->getRight());
   }
   Node<T>** nextCol = 0;
-  if(*currRow != 0) {
+  if(*currCol != 0) {
     nextCol = &((*currCol)->getRight());
     (*currCol)->setRight(**nextCol);
     oldNode = *currCol;
