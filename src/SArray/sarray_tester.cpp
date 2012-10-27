@@ -19,6 +19,9 @@ int main () {
   cout << "accessed: " << a->access(3, 5) << endl;
   cout << "accessed: " << a->access(1, 1) << endl;
 
+  a->remove(3, 6);
+  a->remove(1, 1);
+
   a->print();
   delete a;
   return 0;
