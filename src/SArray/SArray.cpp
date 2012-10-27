@@ -91,6 +91,7 @@ void SArray<T>::remove(int r, int c) {
   Node<T>** nextRow = 0;
   if(*currRow != 0) {
     nextRow = &((*currRow)->getDown());
+    (*currRow)->setDown(**nextRow);
   }
 
   Node<T>** currCol = &(rows[r]);
@@ -100,12 +101,17 @@ void SArray<T>::remove(int r, int c) {
   Node<T>** nextCol = 0;
   if(*currRow != 0) {
     nextCol = &((*currCol)->getRight());
+    (*currCol)->setRight(**nextCol);
   }
 
-  Node<T>* oldNode = *currRow;
-  (*currRow)->setDown(**nextRow);
-  (*currCol)->setRight(**nextCol);
-  delete oldNode;
+  Node<T>* oldRow = *currRow;
+  Node<T>* oldCol = *currCol;
+  if(oldRow != 0) {
+    delete oldRow;
+  }
+  if(oldCol != 0) {
+    delete oldCol;
+  }
 }
 
 template <typename T>
